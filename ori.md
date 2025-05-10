@@ -1,0 +1,19 @@
+- Ori (character)
+    - On The Surface:
+        - Entertaining
+        - Lighthearted
+        - Light
+        - Heart Of The Party
+    - Kept Hidden (Very Well)
+        - Dark Past
+        - Extremely Powerful
+            - Floodgate Temper
+                - Extremely Difficult To Set Off
+                - Devastating When Unleashed
+                    - BBEG-rivaling
+    - Personal
+        - Support
+        - Bard
+- Setting
+    - Fantasy
+        - DnD-esque

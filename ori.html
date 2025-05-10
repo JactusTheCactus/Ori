@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap');
+
+        body {
+            font: 30px Verdana;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        hr {
+            border: none;
+            border-top: 0.1em solid#ccc;
+            margin: 1em 0;
+        }
+
+        h2 {
+            font-size: 1.5em;
+        }
+
+        h1 {
+            font-size: 2em;
+        }
+
+        table {
+            /* border: 1px solid black; */
+            border-collapse: collapse;
+        }
+
+        td,
+        th {
+            /* border: 1px solid black; */
+            /* border-bottom: 1px solid black; */
+            width: 25%;
+            vertical-align: bottom;
+        }
+
+        th {
+            font-size: 1.25em;
+            padding: 0.25em;
+        }
+
+        .ipa {
+            font: 1em "Noto Sans";
+        }
+
+        .ipa::before,
+        .ipa::after {
+            content: "/";
+        }
+    </style>
+</head>
+
+<body></body>
+<script type="module">
+    import mermaid from'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+    mermaid.initialize({startOnLoad:true});
+</script>
+<script>
+    function capitalize(input) {
+        const regExp = /([^a-z]*)([a-z])(.*)/i;
+        const capitalizeWord = (word) => {
+            const match = word.toLowerCase().match(regExp);
+            if (!match) return word;
+            const [, prefix, firstLetter, suffix] = match;
+            return prefix + firstLetter.toUpperCase() + suffix;
+        };
+        if (typeof input === 'string') {
+            return capitalizeWord(input);
+        } else if (Array.isArray(input)) {
+            return input.map(capitalizeWord).join(' ');
+        } else {
+            throw new Error("Input must be a 'string' or an 'array' of strings");
+        };
+    };
+    const mermaidChart = {
+        nodes: `%%%
+00("\`Ori del Corvo<br>/ˈoʊ.ɹi dɛl‿ˈkɔɹ.voʊ/\`");
+%%%
+01("\`Ori<br>/o.ri/\`");
+02("\`del Corvo<br>/del‿ˈkɔr.vo/\`");
+%%%
+03("\`Del<br>/del/\`");
+04("\`Corvo<br>/ˈkɔr.vo/\`");
+%%%
+05("\`Di<br>/di/\`");
+06("\`Il<br>/il/\`");
+%%%
+07("\`#34;Gold#34;\`");
+08("\`#34;Of#34;\`");
+09("\`#34;The#34;\`");
+10("\`#34;Raven#34;\`");
+%%%
+11{"\`#34;The Raven's Gold#34;\`"};
+%%%`,
+        connections: `%%%
+00 === 01;
+00 === 02;
+%%%
+01 ===== 07;
+02 === 03;
+02 === 04;
+%%%
+03 === 05;
+03 === 06;
+04 ==== 10;
+%%%
+05 === 08;
+06 === 09;
+%%%
+07 === 11;
+08 === 11;
+09 === 11;
+10 === 11;
+%%%`
+    };
+    const flowChart = `graph LR;
+%% Define Nodes
+    ${mermaidChart.nodes}
+%% Define Connections
+    ${mermaidChart.connections}
+`;
+    const name =
+    {
+        first:
+            [
+                "ori",
+                "ˈoʊ.ɹi",
+                "gold"
+            ]
+        ,
+        middle:
+            [
+                "del",
+                "dɛl",
+                "of the"
+            ],
+        last:
+            [
+                "corvo",
+                "ˈkɔɹ.voʊ",
+                "raven"
+            ]
+    };
+    document.title = `${[name.first[0], name.middle[0], name.last[0]].join(' ')}`;
+    const description = document.createElement('div');
+    description.width = "100%";
+    description.innerHTML = `
+        <h1>${capitalize([name.first[0]])} ${[name.middle[0]]} ${capitalize([name.last[0]])}</h1>
+    `;
+    description.innerHTML += `<pre class="mermaid">${flowChart}</pre>`;
+    document.body.appendChild(description);
+</script>
+
+</html>
