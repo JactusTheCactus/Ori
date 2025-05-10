@@ -102,43 +102,43 @@
     };
     const mermaidChart = {
         nodes: [`
-    00(("\`Ori del Corvo<br>/ˈoʊ.ɹi dɛl‿ˈkɔɹ.voʊ/\`"));
+00(("\`Ori del Corvo<br>/ˈoʊ.ɹi dɛl‿ˈkɔɹ.voʊ/\`"));
         `, `
-    01("\`Ori<br>/o.ri/\`");
-    02("\`del Corvo<br>/del‿ˈkɔr.vo/\`");
+01("\`Ori<br>/o.ri/\`");
+02("\`del Corvo<br>/del‿ˈkɔr.vo/\`");
         `, `
-    03("\`Del<br>/del/\`");
-    04("\`Corvo<br>/ˈkɔr.vo/\`");
+03("\`Del<br>/del/\`");
+04("\`Corvo<br>/ˈkɔr.vo/\`");
         `, `
-    05("\`Di<br>/di/\`");
-    06("\`Il<br>/il/\`");
+05("\`Di<br>/di/\`");
+06("\`Il<br>/il/\`");
         `, `
-    07("\`#34;Gold#34;\`");
-    08("\`#34;Of#34;\`");
-    09("\`#34;The#34;\`");
-    10("\`#34;Raven#34;\`");
+07("\`#34;Gold#34;\`");
+08("\`#34;Of#34;\`");
+09("\`#34;The#34;\`");
+10("\`#34;Raven#34;\`");
         `, `
-    11{"\`#34;The Raven's Gold#34;\`"};
+11{"\`#34;The Raven's Gold#34;\`"};
         `],
         connections: [`
-    00===01;
-    00===02;
+00===01;
+00===02;
         `, `
-    01=====07;
-    02===03;
-    02===04;
+01=====07;
+02===03;
+02===04;
         `, `
-    03===05;
-    03===06;
-    04====10;
+03===05;
+03===06;
+04====10;
         `, `
-    05===08;
-    06===09;
+05===08;
+06===09;
         `, `
-    07===11;
-    08===11;
-    09===11;
-    10===11;
+07===11;
+08===11;
+09===11;
+10===11;
         `]
     };
     let flowChart = `graph LR;
@@ -154,17 +154,17 @@
         <h1>${capitalize([name.first[0]])} ${[name.middle[0]]} ${capitalize([name.last[0]])}</h1>
     `;
     flowChart = flowChart
-        .replace(/ {2,}/g,'')
-        .replace(/\n{2,}/g,'\n')
+        .replace(/ {2,}/g, '')
+        .replace(/\n{2,}/g, '\n')
     description.innerHTML += `<pre class="mermaid">${flowChart}</pre>`;
     console.log(flowChart
-        .replace(/graph LR;/g,'')
-        .replace(/%.*/g,'')
-        .replace(/\d\d/g,'')
-        .replace(/<br>/g,'\n\t')
-        .replace(/[\(\)\{\};=`"]/g,'')
-        .replace(/#/g,'"')
-        .replace(/\n{2,}/g,'\n')
+        .replace(/graph LR;/g, '')
+        .replace(/%.*/g, '')
+        .replace(/\d\d/g, '')
+        .replace(/<br>/g, '\n\t')
+        .replace(/[\(\)\{\};=`"]/g, '')
+        .replace(/#/g, '"')
+        .replace(/\n{2,}/g, '\n')
     )
     document.body.appendChild(description);
 </script>
