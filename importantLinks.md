@@ -1,1 +1,1 @@
-- https://unicodelookup.com/
+- [Unicode Lookup](https://unicodelookup.com/)

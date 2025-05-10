@@ -73,7 +73,7 @@
         if (typeof input === 'string') {
             return capitalizeWord(input);
         } else if (Array.isArray(input)) {
-            return input.map(capitalizeWord).join(' ');
+            return input.map(capitalizeWord);
         } else {
             throw new Error("Input must be a 'string' or an 'array' of strings");
         };
@@ -147,7 +147,7 @@
 %% Connections
     ${mermaidChart.connections.join('\n%%%\n')}
 `;
-    document.title = `${[name.first[0], name.middle[0], name.last[0]].join(' ')}`;
+    document.title = `${capitalize([name.first[0], name.middle[0], name.last[0]]).join(' ')}`;
     const description = document.createElement('div');
     description.width = "100%";
     description.innerHTML = `
