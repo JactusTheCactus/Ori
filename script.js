@@ -104,10 +104,6 @@ function chartLabel(label = '%', edge = '%%') {
     return output;
 };
 let flowChart = `${[
-    '---',
-    `title: ${capitalize([ori.name.first[0]])} ${[ori.name.middle[0]]} ${capitalize([ori.name.last[0]])}`,
-    '---',
-
     'flowchart LR;',
 
     chartLabel('Nodes'),
@@ -130,18 +126,44 @@ document.title = `${[
     ori.name.middle[0],
     capitalize(ori.name.last[0])
 ].join(' ')}`;
-const description = document.createElement('div');
+const head = document.createElement('h1');
+head.innerHTML = `${capitalize(ori.name.first[0])} ${ori.name.middle[0]} ${capitalize(ori.name.last[0])}`;
 flowChart = flowChart
     .replace(/ {2,}/g, '')
     .replace(/\n{2,}/g, '\n')
 const nameChart = document.createElement('pre');
 nameChart.classList.add('mermaid');
 nameChart.innerHTML = `${flowChart}`;
-description.appendChild(nameChart);
-document.body.appendChild(description);
-const commentContent = Array.from(description.children)
-    .map(child => child.innerHTML)
-    .join('\n');
-console.log(commentContent);
-const newComment = document.createComment(commentContent);
-document.body.appendChild(newComment)
+let mdText = `
+# Info on ${capitalize(ori.name.first[0])}
+- Ori (character)
+    - On The Surface:
+        - Entertaining
+        - Lighthearted
+        - Light
+        - Heart Of The Party
+    - Kept Hidden (Very Well)
+        - Dark Past
+        - Extremely Powerful
+            - Floodgate Temper
+                - Extremely Difficult To Set Off
+                - Devastating When Unleashed
+                    - BBEG-rivaling
+    - Personal
+        - Support
+        - Bard
+- Setting
+    - Fantasy
+        - DnD-esque
+`;
+mdText = mdText
+    .replace(/# /g, "## ")
+const markdown = document.createElement('div');
+markdown.innerHTML = marked.parse(mdText);
+[
+    head,
+    nameChart,
+    markdown
+].forEach(element => {
+    document.body.appendChild(element)
+});
