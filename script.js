@@ -24,34 +24,34 @@ fetch('data.json')
         };
         const mermaidChart = {
             nodes: [
-                `00(("\`${capitalize(character[0].first[0])} ${character[0].middle[0]} ${capitalize(character[0].last[0])}
+                `00(("\`${capitalize(character.name.first[0])} ${character.name.middle[0]} ${capitalize(character.name.last[0])}
             #8595;
-            /${character[0].first[1]} ${character[0].middle[1]}‿${character[0].last[1]}/\`"));`,
-                `01("\`${capitalize(character[0].first[0])}
+            /${character.name.first[1]} ${character.name.middle[1]}‿${character.name.last[1]}/\`"));`,
+                `01("\`${capitalize(character.name.first[0])}
             #8595;
-            /${character[0].first[1]}/\`");`,
-                `02("\`${character[0].middle[0]} ${capitalize(character[0].last[0])}
+            /${character.name.first[1]}/\`");`,
+                `02("\`${character.name.middle[0]} ${capitalize(character.name.last[0])}
             #8595;
-            /${character[0].middle[1]}‿${character[0].last[1]}/\`");`,
-                `03("\`${capitalize(character[0].middle[0])}
+            /${character.name.middle[1]}‿${character.name.last[1]}/\`");`,
+                `03("\`${capitalize(character.name.middle[0])}
             #8595;
-            /${character[0].middle[1]}/\`");`,
-                `04("\`${capitalize(character[0].last[0])}
+            /${character.name.middle[1]}/\`");`,
+                `04("\`${capitalize(character.name.last[0])}
             #8595;
-            /${character[0].last[1]}/\`");`,
+            /${character.name.last[1]}/\`");`,
                 `05("\`Di
             #8595;
             /di/\`");`,
                 `06("\`Il
             #8595;
             /il/\`");`,
-                `07("\`#34;${capitalize(character[0].first[2])}#34;\`");`,
-                `08("\`#34;${capitalize(character[0].middle[2]).split(' ')[0]}#34;\`");`,
-                `09("\`#34;${capitalize(character[0].middle[2]).split(' ')[1]}#34;\`");`,
-                `10("\`#34;${capitalize(character[0].last[2])}#34;\`");`,
-                `11{"\`#34;${[character[0].first[2], character[0].middle[2], character[0].last[2]].map(capitalize).join(' ')}#34;
+                `07("\`#34;${capitalize(character.name.first[2])}#34;\`");`,
+                `08("\`#34;${capitalize(character.name.middle[2]).split(' ')[0]}#34;\`");`,
+                `09("\`#34;${capitalize(character.name.middle[2]).split(' ')[1]}#34;\`");`,
+                `10("\`#34;${capitalize(character.name.last[2])}#34;\`");`,
+                `11{"\`#34;${[character.name.first[2], character.name.middle[2], character.name.last[2]].map(capitalize).join(' ')}#34;
             #8595;
-            #34;${capitalize(character[0].middle[2]).split(' ')[1]} ${capitalize(character[0].last[2])}'s ${capitalize(character[0].first[2])}#34;\`"};`
+            #34;${capitalize(character.name.middle[2]).split(' ')[1]} ${capitalize(character.name.last[2])}'s ${capitalize(character.name.first[2])}#34;\`"};`
             ],
             connections: [
                 `00===01;`,
@@ -90,35 +90,33 @@ fetch('data.json')
         };
         let flowChart = `${[
             'flowchart LR;',
-            //chartLabel('Nodes'),
             mermaidFormat(mermaidChart.nodes),
-            //chartLabel('Connections'),
             mermaidFormat(mermaidChart.connections),
         ].join('\n')
             }`;
-        Object.values(character[0]).forEach(
+        Object.values(character.name).forEach(
             (item) => {
                 let Name = item[0];
-                if (Name !== character[0].middle[0]) {
+                if (Name !== character.name.middle[0]) {
                     Name = capitalize(Name)
                 };
             }
         );
         document.title = `${[
-            capitalize(character[0].first[0]),
-            character[0].middle[0],
-            capitalize(character[0].last[0])
+            capitalize(character.name.first[0]),
+            character.name.middle[0],
+            capitalize(character.name.last[0])
         ].join(' ')}`;
         const head = document.createElement('h1');
-        head.innerHTML = `${capitalize(character[0].first[0])} ${character[0].middle[0]} ${capitalize(character[0].last[0])}`;
+        head.innerHTML = `${capitalize(character.name.first[0])} ${character.name.middle[0]} ${capitalize(character.name.last[0])}`;
         flowChart = flowChart
             .replace(/ {2,}/g, '')
             .replace(/\n{2,}/g, '\n')
         const nameChart = document.createElement('pre');
         nameChart.classList.add('mermaid');
         nameChart.innerHTML = `${flowChart}`;
-        let mdText = `## Info on ${capitalize(character[0].first[0])}
-${character[1]}`;
+        let mdText = `## Info on ${capitalize(character.name.first[0])}
+${character.md}`;
         const markdown = document.createElement('div');
         markdown.innerHTML = marked.parse(mdText);
         [
